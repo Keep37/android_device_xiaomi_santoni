@@ -294,33 +294,44 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGES += \
     libubuntu_application_api \
-    libubuntu_application_api_32 \
-    libcameraservice_32 \
-    libdroidmedia_32 \
-    libcamera_compat_layer_32 \
-    libmedia_compat_layer_32 \
-    libui_compat_layer_32 \
-    libsf_compat_layer_32 \
+    libcameraservice \
+    libdroidmedia \
+    libcamera_compat_layer \
+    libmedia_compat_layer \
+    camera_service \
+    libui_compat_layer \
+    libsf_compat_layer \
     minimediaservice \
     minisfservice \
-    libminisf_32 \
-    libaudioflingerglue_32 \
+    libminisf \
+    libaudioflingerglue \
     miniafservice
 
 ## Power off charging mode
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# telepathy-ofono quirks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.t-o.quirk.forcesink=sink.primary_output \
+    ro.t-o.quirk.forcesource=source.primary_input
+    
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ubuntu/70-android.rules:system/halium/lib/udev/rules.d/70-android.rules \
-    $(LOCAL_PATH)/ubuntu/timekeeper.conf:system/halium/etc/init/timekeeper.conf \
-    $(LOCAL_PATH)/ubuntu/ofono.override:system/halium/etc/init/ofono.override \
-    $(LOCAL_PATH)/ubuntu/apparmor.d/local/usr.bin.media-hub-server:system/halium/etc/apparmor.d/local/usr.bin.media-hub-server \
-    $(LOCAL_PATH)/ubuntu/apparmor.d/abstractions/base:system/halium/etc/apparmor.d/abstractions/base \
-    $(LOCAL_PATH)/ubuntu/servicemanager.rc:system/etc/init/servicemanager.rc \
     $(LOCAL_PATH)/ubuntu/init_setup_first_boot.sh:system/etc/init_setup_first_boot.sh \
     $(LOCAL_PATH)/ubuntu/init_hcismd_up.sh:system/etc/init_hcismd_up.sh \
-    $(LOCAL_PATH)/ubuntu/android-tools-adb.conf:system/halium/etc/init/android-tools-adb.conf \
+    $(LOCAL_PATH)/ubuntu/70-android.rules:system/halium/lib/udev/rules.d/70-android.rules \
     $(LOCAL_PATH)/ubuntu/powerd-config.xml:system/halium/usr/share/powerd/device_configs/config-default.xml \
+    $(LOCAL_PATH)/ubuntu/timekeeper.conf:system/halium/etc/init/timekeeper.conf \
+    $(LOCAL_PATH)/ubuntu/ofono.override:system/halium/etc/init/ofono.override \
+    $(LOCAL_PATH)/ubuntu/android-tools-adb.conf:system/halium/etc/init/android-tools-adb.conf \
     $(LOCAL_PATH)/ubuntu/display.conf:system/halium/etc/ubuntu-touch-session.d/android.conf \
-    $(LOCAL_PATH)/ubuntu/display.conf:system/halium/etc/ubuntu-touch-session.d/santoni.conf
+    $(LOCAL_PATH)/ubuntu/fix_pulseaudio.sh:system/halium/etc/init/fix_pulseaudio.sh \
+    $(LOCAL_PATH)/ubuntu/apparmor.d/abstractions/base:system/halium/etc/apparmor.d/abstractions/base \
+    $(LOCAL_PATH)/ubuntu/apparmor.d/local/usr.bin.media-hub-server:system/halium/etc/apparmor.d/local/usr.bin.media-hub-server \
+    $(LOCAL_PATH)/ubuntu/apparmor.d/hardware/graphics.d/apparmor-easyprof-ubuntu_android:system/halium/usr/share/apparmor/hardware/graphics.d/apparmor-easyprof-ubuntu_android \
+    $(LOCAL_PATH)/ubuntu/apparmor.d/hardware/video.d/apparmor-easyprof-ubuntu_android:system/halium/usr/share/apparmor/hardware/video.d/apparmor-easyprof-ubuntu_android \
+    $(LOCAL_PATH)/ubuntu/servicemanager.rc:system/etc/init/servicemanager.rc 
+
+#    $(LOCAL_PATH)/ubuntu/70-santoni.rules:usr/lib/lxc-android-config/70-santoni.rules 
+   
+
